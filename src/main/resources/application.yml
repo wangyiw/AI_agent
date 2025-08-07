@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: ai-agent
+  profiles:
+    active: local
+# PgVector sql
+#  datasource:
+#    url: xxx
+#    username: root
+#    password: 123456
+  ai:
+    dashscope:
+      api-key: sk-2bf6384729094451a7d2b633231f1f9e
+      embedding:
+        model: text-embedding-v1
+      chat:
+        options:
+          model: qwen-plus
+
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: gemma3:1b
+# MCP 服务
+#    mcp:
+#      client:
+#        sse:
+#          connections:
+#            server1:
+#              url: http://localhost:8127
+#        stdio:
+#          servers-configuration: classpath:mcp-servers.json
+# PgVector sql
+#    vectorstore:
+#      pgvector:
+#        index-type: HNSW
+#        dimensions: 1536
+#        distance-type: COSINE_DISTANCE
+#        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+#        initialize-schema: true
+
+server:
+  port: 8127
+  servlet:
+    context-path: /api
+# springdoc-openapi config
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.yww.aiagent.controller
+# knife4j config
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+# searchAPI
+search-api:
+  api-key: 7brymcnVae84NxpEgK3kzNyH
+# 修改日志级别，查看 Spring AI 更多调用细节
+logging:
+  level:
+    org.springframework.ai: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %5p [%thread] %c{1}.%M(%L) - %msg%n"  # 控制台输出日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %5p [%thread] %c{1}.%M(%L) - %msg%n"  # 文件输出日志格式
+  file:
+    name: logs/agent.log  # 日志文件输出路径
