@@ -52,9 +52,7 @@ Nginx 静态资源分离部署
 🔗 接口标准化	支持 RESTful + SSE，便于前后端解耦及多端调用
 
 🚀 快速启动
-bash
-复制
-编辑
+bash 命令
 # 前端
 cd frontend
 pnpm install
